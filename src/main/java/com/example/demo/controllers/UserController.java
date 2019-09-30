@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.SareetaApplication;
+import com.example.demo.ECommerceApplication;
 import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.CartRepository;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserController {
 
-    Logger log = LoggerFactory.getLogger(SareetaApplication.class);
+    Logger log = LoggerFactory.getLogger(ECommerceApplication.class);
     @Autowired
     private UserRepository userRepository;
     @Autowired
