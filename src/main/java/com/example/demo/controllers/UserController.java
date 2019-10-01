@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserController {
 
-    Logger log = LoggerFactory.getLogger(ECommerceApplication.class);
+    private Logger log = LoggerFactory.getLogger(ECommerceApplication.class);
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -36,11 +36,6 @@ public class UserController {
         return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
     }
 
-//    @PostMapping("/sign-up")
-//    public void signUp(@RequestBody User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        userRepository.save(user);
-//    }
 
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {

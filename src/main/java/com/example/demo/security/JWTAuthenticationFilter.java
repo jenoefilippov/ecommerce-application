@@ -20,7 +20,7 @@ import java.util.Date;
 import static com.example.demo.security.SecurityConstants.*;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
 

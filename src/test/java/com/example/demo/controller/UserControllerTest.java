@@ -19,8 +19,8 @@ import static org.mockito.Mockito.when;
 
 public class UserControllerTest {
 
-    BCryptPasswordEncoder bCryptPasswordEncoder = mock(BCryptPasswordEncoder.class);
     private UserController userController;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = mock(BCryptPasswordEncoder.class);
     private UserRepository userRepository = mock(UserRepository.class);
     private CartRepository cartRepository = mock(CartRepository.class);
 
@@ -35,7 +35,11 @@ public class UserControllerTest {
     }
 
     @Test
-    public void createUserHappyPath() {
+    public void createUser_findByUserName_findById() {
+
+        /**
+         * Create User
+         */
 
         when(bCryptPasswordEncoder.encode("password")).thenReturn("saltedPassword");
         CreateUserRequest userRequest = new CreateUserRequest();
@@ -53,5 +57,22 @@ public class UserControllerTest {
         assertEquals(0, user.getId());
         assertEquals("jenoe", user.getUsername());
         assertEquals("saltedPassword", user.getPassword());
+
+        /**
+         * findByUserName
+         */
+
+        assertNotNull(userController.findByUserName(user.getUsername()));
+
+
+        /**
+         * Find by id
+         */
+
+        user.setId(1L);
+        assertNotNull(userController.findById(user.getId()));
+
     }
+
+
 }

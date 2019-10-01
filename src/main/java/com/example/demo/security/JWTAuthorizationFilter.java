@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import static com.example.demo.security.SecurityConstants.*;
 
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
