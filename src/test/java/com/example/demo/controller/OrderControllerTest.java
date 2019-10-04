@@ -37,9 +37,11 @@ public class OrderControllerTest {
     CartRepository cartRepository;
 
 
+    /**
+     * Setting up all necessary data
+     */
     @BeforeEach
     public void setUp(){
-
         orderController = new OrderController();
         TestUtils.injectObject(orderController, "userRepository", userRepository);
         TestUtils.injectObject(orderController, "orderRepository", orderRepository);
