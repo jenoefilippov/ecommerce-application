@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.util.matcher.OrRequestMatcher;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,30 +22,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 
-@DataJpaTest
+
 public class OrderControllerTest {
 
     private OrderController orderController;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-    @Autowired
-    ItemRepository itemRepository;
-    @Autowired
-    CartRepository cartRepository;
-
+    private UserRepository userRepository = mock(UserRepository.class);
+    private OrderRepository orderRepository = mock(OrderRepository.class);
+    private ItemRepository itemRepository = mock(ItemRepository.class);
+    private CartRepository cartRepository = mock(CartRepository.class);
+    private User user;
 
     /**
      * Setting up  all necessary data
      */
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         orderController = new OrderController();
         TestUtils.injectObject(orderController, "userRepository", userRepository);
         TestUtils.injectObject(orderController, "orderRepository", orderRepository);
 
-        User user = new User();
+        user = new User();
         user.setId(1L);
         user.setUsername("jenoe");
         user.setPassword("password");
@@ -63,7 +58,7 @@ public class OrderControllerTest {
     @Test
     public void submit() {
 
-        User user = userRepository.findByUsername("jenoe");
+//        User user = userRepository.findByUsername("jenoe");
         assertNotNull(user);
         assertEquals("jenoe", user.getUsername());
         final ResponseEntity<UserOrder> response = orderController.submit(user.getUsername());
@@ -73,7 +68,7 @@ public class OrderControllerTest {
 
     @Test
     public void getOrdersForUser() {
-        User user = userRepository.findByUsername("jenoe");
+//        User user = userRepository.findByUsername("jenoe");
         assertNotNull(user);
         final ResponseEntity<List<UserOrder>> response = orderController.getOrdersForUser(user.getUsername());
         assertNotNull(response);
