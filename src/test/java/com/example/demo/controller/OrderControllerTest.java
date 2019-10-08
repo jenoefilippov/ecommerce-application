@@ -11,8 +11,6 @@ import com.example.demo.model.persistence.repositories.OrderRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
@@ -20,7 +18,9 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 public class OrderControllerTest {
@@ -37,6 +37,7 @@ public class OrderControllerTest {
      */
     @BeforeEach
     public void setUp() {
+
         orderController = new OrderController();
         TestUtils.injectObject(orderController, "userRepository", userRepository);
         TestUtils.injectObject(orderController, "orderRepository", orderRepository);
@@ -53,24 +54,31 @@ public class OrderControllerTest {
         user.setCart(cart);
         userRepository.save(user);
         cartRepository.save(cart);
+
+        when(userRepository.save(any(User.class))).thenReturn(user);
+        when(userRepository.findByUsername(any(String.class))).thenReturn(user);
     }
 
     @Test
     public void submit() {
 
-//        User user = userRepository.findByUsername("jenoe");
         assertNotNull(user);
         assertEquals("jenoe", user.getUsername());
         final ResponseEntity<UserOrder> response = orderController.submit(user.getUsername());
         assertNotNull(response);
-        assertEquals(200, response.getStatusCode().value());
+        assertEquals(200, response.getStatusCodeValue());
+        UserOrder userFromresponse = response.getBody();
+        assertNotNull(userFromresponse);
+        assertEquals("jenoe", userFromresponse.getUser().getUsername());
     }
 
     @Test
     public void getOrdersForUser() {
-//        User user = userRepository.findByUsername("jenoe");
+
         assertNotNull(user);
         final ResponseEntity<List<UserOrder>> response = orderController.getOrdersForUser(user.getUsername());
+        List<UserOrder> userOrderList = response.getBody();
+        assertNotNull(userOrderList);
         assertNotNull(response);
         assertEquals(200, response.getStatusCode().value());
     }

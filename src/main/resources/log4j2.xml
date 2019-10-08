@@ -1,0 +1,14 @@
+<Configuration status="info" name="example" packages="">
+    <Appenders>
+        <Socket name="socket" host="127.0.0.1" port="4545">
+            <PatternLayout pattern="%p: %m%n" charset="UTF-8"/>
+        </Socket>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+        </Root>
+        <Logger name="splunk.logger" level="info">
+            <AppenderRef ref="socket"/>
+        </Logger>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,17 @@
+<configuration>
+    <appender name="socket" class="com.splunk.logging.TcpAppender">
+        <RemoteHost>127.0.0.1</RemoteHost>
+        <Port>4545</Port>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{ISO8601} [%thread] %level: %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="splunk.logger" additivity="false" level="INFO">
+        <appender-ref ref="socket"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="socket"/>
+    </root>
+</configuration>
