@@ -64,7 +64,7 @@ public class UserControllerTest {
         final ResponseEntity<User> response1 = userController.findByUserName(user.getUsername());
         assertNotNull(response1);
         User findUser = response.getBody();
-        assertEquals("jenoe" , findUser.getUsername());
+        assertEquals("jenoe", findUser.getUsername());
 
         /**
          * Find by id

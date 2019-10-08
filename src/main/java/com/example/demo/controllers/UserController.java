@@ -6,7 +6,6 @@ import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.CartRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
 import com.example.demo.model.requests.CreateUserRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +46,16 @@ public class UserController {
         cartRepository.save(cart);
         user.setCart(cart);
         if (createUserRequest.getPassword().length() < 3 ||
-				!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
-        	log.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
-        	return ResponseEntity.badRequest().build();
-		}
+                !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
+            log.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
+            return ResponseEntity.badRequest().build();
+        }
         User byUsername = userRepository.findByUsername(createUserRequest.getUsername());
         if (byUsername != null) {
             log.warn("Username \" {} \" exist. Change username.", createUserRequest.getUsername());
             return ResponseEntity.badRequest().build();
         }
-		user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
         log.info("User {} created", createUserRequest.getUsername());
         userRepository.save(user);
         return ResponseEntity.ok(user);
