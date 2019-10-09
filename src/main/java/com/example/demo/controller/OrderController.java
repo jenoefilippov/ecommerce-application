@@ -1,4 +1,4 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.UserOrder;

@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.TestUtils;
-import com.example.demo.controllers.CartController;
 import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.Item;
 import com.example.demo.model.persistence.User;
