@@ -36,7 +36,6 @@ public class UserController {
         return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
     }
 
-
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
         log.info("Creating user {}", createUserRequest.getUsername());
