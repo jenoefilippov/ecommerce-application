@@ -20,10 +20,9 @@ import java.util.ArrayList;
 import static com.example.demo.security.SecurityConstants.*;
 
 @Component
-class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
+class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-
-    public JWTAuthenticationVerificationFilter(AuthenticationManager authManager) {
+    public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
 

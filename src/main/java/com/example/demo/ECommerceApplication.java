@@ -19,8 +19,6 @@ public class ECommerceApplication {
 
 
     public static void main(String[] args) throws IOException {
-
-
         SpringApplication.run(ECommerceApplication.class, args);
     }
 

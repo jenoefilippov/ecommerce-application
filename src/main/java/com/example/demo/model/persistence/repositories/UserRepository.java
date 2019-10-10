@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.stream.LongStream;
 
-@Repository
+
 public interface UserRepository extends JpaRepository<User, Long> {
 	User findByUsername(String username);
 
-    LongStream findOneByUsername(String username);
 }
