@@ -22,6 +22,7 @@ import static com.example.demo.security.SecurityConstants.*;
 @Component
 class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+    @Autowired
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }

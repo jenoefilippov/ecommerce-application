@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody CreateUserRequest createUserRequest) {
-        log.info("Creating user {}", createUserRequest.getUsername());
+        log.info("Creating user {}.", createUserRequest.getUsername());
         User user = new User();
         user.setUsername(createUserRequest.getUsername());
         Cart cart = new Cart();
@@ -47,16 +47,16 @@ public class UserController {
         user.setCart(cart);
         if (createUserRequest.getPassword().length() < 3 ||
                 !createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())) {
-            log.error("Error with user password. Cannot create user {}", createUserRequest.getUsername());
+            log.error("Error with user password. Cannot create user {}.", createUserRequest.getUsername());
             return ResponseEntity.badRequest().build();
         }
         User byUsername = userRepository.findByUsername(createUserRequest.getUsername());
         if (byUsername != null) {
-            log.warn("Username \" {} \" exist. Change username.", createUserRequest.getUsername());
+            log.warn("Username \"{}\" exist. Change username.", createUserRequest.getUsername());
             return ResponseEntity.badRequest().build();
         }
         user.setPassword(bCryptPasswordEncoder.encode(createUserRequest.getPassword()));
-        log.info("User {} created", createUserRequest.getUsername());
+        log.info("User {} created.", createUserRequest.getUsername());
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }
