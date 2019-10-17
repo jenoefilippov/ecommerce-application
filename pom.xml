@@ -20,13 +20,13 @@
         <junit.jupiter.version>5.5.2</junit.jupiter.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>splunk-artifactory</id>
-            <name>Splunk Releases</name>
-            <url>http://splunk.jfrog.io/splunk/ext-releases-local</url>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>splunk-artifactory</id>-->
+<!--            <name>Splunk Releases</name>-->
+<!--            <url>http://splunk.jfrog.io/splunk/ext-releases-local</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
     <dependencies>
         <dependency>
